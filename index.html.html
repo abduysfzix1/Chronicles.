@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10100f">
+  <title>CHRONICLES — Explore the Past</title>
+  <meta name="description" content="A cinematic digital museum exploring the people, ideas, and events that shaped our world.">
+  <style>
+    :root{--bg:#10100f;--panel:#191916;--panel2:#202019;--gold:#c9a45c;--gold2:#ead5a4;--ivory:#eee9dc;--muted:#aaa493;--line:rgba(201,164,92,.22);--serif:Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ivory);font-family:var(--sans);line-height:1.6}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:radial-gradient(#c9a45c 0.55px,transparent .55px);background-size:7px 7px;z-index:-1}
+    a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+    .top{position:sticky;top:0;z-index:20;background:rgba(16,16,15,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font:700 23px var(--serif);letter-spacing:4px;color:var(--gold2)}.brand small{display:block;font:9px var(--sans);letter-spacing:3px;color:var(--muted);margin-top:-3px}
+    .links{display:flex;gap:25px;color:#d1c9b7;font-size:13px}.links a:hover{color:var(--gold2)}.navright{display:flex;align-items:center;gap:10px}
+    .btn{border:1px solid var(--gold);background:transparent;color:var(--gold2);padding:11px 17px;cursor:pointer;letter-spacing:1px;font-size:11px;text-transform:uppercase;transition:.2s}.btn:hover,.btn.gold{background:var(--gold);color:#17140e}.btn.small{padding:8px 11px}
+    .hero{min-height:650px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:45px;padding:70px 0 85px;position:relative}
+    .eyebrow{color:var(--gold);font-size:10px;letter-spacing:4px;text-transform:uppercase}.hero h1{font:clamp(54px,8vw,100px)/.98 var(--serif);font-weight:400;margin:22px 0;color:var(--ivory);letter-spacing:-3px}.hero h1 em{color:var(--gold2);font-style:normal}.hero p{max-width:510px;color:var(--muted);font-size:16px;margin:25px 0 30px}.actions{display:flex;gap:12px;flex-wrap:wrap}
+    .museum{height:490px;position:relative;display:flex;align-items:center;justify-content:center;perspective:900px}
+    .arch{position:absolute;width:75%;height:85%;border:2px solid rgba(201,164,92,.55);border-bottom:0;border-radius:48% 48% 0 0/30% 30% 0 0;transform:rotateY(-12deg);box-shadow:0 0 65px rgba(201,164,92,.08),inset 0 0 50px rgba(201,164,92,.06)}
+    .arch:before,.arch:after{content:"";position:absolute;top:12%;bottom:0;width:9px;background:linear-gradient(90deg,#6f542a,#d0ad6a,#6f542a);opacity:.75}.arch:before{left:12%}.arch:after{right:12%}
+    .museum-core{position:relative;text-align:center;margin-top:80px;transform:translateZ(55px)}.museum-core .seal{width:145px;height:145px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 22px;color:var(--gold2);font:42px var(--serif);box-shadow:0 0 45px rgba(201,164,92,.16)}.museum-core strong{font:18px var(--serif);letter-spacing:5px;color:var(--gold2)}.museum-core span{display:block;font-size:9px;letter-spacing:3px;color:var(--muted);margin-top:8px}
+    .floor{position:absolute;bottom:3%;width:100%;height:20%;background:linear-gradient(180deg,transparent,rgba(201,164,92,.13));border-top:1px solid var(--line);transform:rotateX(65deg);filter:blur(1px)}
+    .section{padding:88px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:35px}.section h2{font:clamp(34px,5vw,54px)/1.05 var(--serif);font-weight:400;margin:10px 0}.section-head p{max-width:420px;color:var(--muted);font-size:13px;margin:0}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.person{background:linear-gradient(145deg,#24231d,#151512);border:1px solid var(--line);min-height:390px;position:relative;overflow:hidden;padding:25px;display:flex;flex-direction:column;justify-content:end;transition:.3s}.person:hover{transform:translateY(-6px);border-color:var(--gold)}.person:before{content:attr(data-mark);position:absolute;top:20px;right:20px;font:110px var(--serif);color:rgba(201,164,92,.12)}.person .number{color:var(--gold);font-size:10px;letter-spacing:3px}.person h3{font:32px var(--serif);font-weight:400;margin:8px 0}.person p{color:var(--muted);font-size:13px;max-width:290px}.person button{align-self:flex-start;margin-top:10px}
+    .quote{padding:65px 8%;text-align:center;background:linear-gradient(120deg,#211e16,#141411);border:1px solid var(--line)}.quote blockquote{font:clamp(24px,4vw,39px)/1.35 var(--serif);margin:0 auto 18px;max-width:850px;color:var(--gold2)}.quote cite{font-style:normal;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0}.event{padding:20px;border-top:1px solid var(--gold);position:relative}.event:before{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--gold);top:-5px;left:20px}.event b{font:25px var(--serif);color:var(--gold2)}.event p{font-size:12px;color:var(--muted)}
+    .learn{display:grid;grid-template-columns:1fr 1fr;gap:24px}.box{background:var(--panel);border:1px solid var(--line);padding:30px}.box h3{font:28px var(--serif);font-weight:400;margin:0 0 12px}.box p{color:var(--muted);font-size:13px}.question{font-size:16px;margin:18px 0}.answers{display:grid;gap:9px}.answers button{text-align:left;padding:12px 14px;background:#24231d;border:1px solid #45402f;color:var(--ivory);cursor:pointer}.answers button:hover{border-color:var(--gold)}.answers button.correct{border-color:#82a879;background:#1d2a1d}.answers button.wrong{border-color:#b66b5f;background:#2a1d1b}.feedback{min-height:24px;color:var(--gold2);font-size:12px;margin-top:12px}
+    footer{padding:35px 0;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-card{width:min(650px,100%);background:#191916;border:1px solid var(--gold);padding:32px;position:relative;max-height:85vh;overflow:auto}.modal-card h2{font:38px var(--serif);font-weight:400;color:var(--gold2);margin:8px 0}.modal-card p{color:#c2bbaa}.close{position:absolute;right:15px;top:12px;background:none;border:0;color:var(--gold2);font-size:25px;cursor:pointer}
+    .urdu{font-family:Tahoma,Arial,sans-serif;direction:rtl}.urdu .links{direction:rtl}.urdu .hero-copy,.urdu .section-head{text-align:right}
+    @media(max-width:800px){.links{display:none}.hero{grid-template-columns:1fr;padding-top:55px}.museum{height:350px}.cards{grid-template-columns:1fr}.person{min-height:300px}.timeline{grid-template-columns:1fr 1fr}.learn{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:15px}}
+    @media(max-width:480px){.wrap{width:min(100% - 28px,1160px)}.nav{height:66px}.brand{font-size:19px}.hero h1{font-size:58px}.museum{height:290px}.timeline{grid-template-columns:1fr}.section{padding:65px 0}.quote{padding:40px 22px}}
+  </style>
+</head>
+<body>
+<header class="top"><div class="wrap nav">
+  <a class="brand" href="#">CHRONICLES<small>THE DIGITAL MUSEUM</small></a>
+  <nav class="links"><a href="#collections" data-en="Collections" data-ur="تاریخی مجموعے">Collections</a><a href="#timeline" data-en="Timeline" data-ur="ٹائم لائن">Timeline</a><a href="#discover" data-en="Discover" data-ur="دریافت کریں">Discover</a></nav>
+  <div class="navright"><button class="btn small" id="langBtn" type="button">اردو</button><a class="btn small" href="#collections" data-en="Enter archive" data-ur="آرکائیو دیکھیں">Enter archive</a></div>
+</div></header>
+<main>
+<section class="wrap hero">
+  <div class="hero-copy">
+    <div class="eyebrow" data-en="History · Culture · Knowledge" data-ur="تاریخ · ثقافت · علم">History · Culture · Knowledge</div>
+    <h1 data-en="Explore the <em>Past.</em>" data-ur="ماضی کو <em>دریافت</em> کریں۔">Explore the <em>Past.</em></h1>
+    <p data-en="Step into a living archive of remarkable people, defining moments, and ideas that changed the world. Every story is a doorway to understanding our present." data-ur="عظیم شخصیات، تاریخی لمحات اور دنیا بدلنے والے خیالات کے زندہ آرکائیو میں قدم رکھیں۔ ہر کہانی ہمارے حال کو سمجھنے کا ایک دروازہ ہے۔">Step into a living archive of remarkable people, defining moments, and ideas that changed the world. Every story is a doorway to understanding our present.</p>
+    <div class="actions"><a class="btn gold" href="#collections" data-en="Explore collections" data-ur="مجموعے دیکھیں">Explore collections</a><a class="btn" href="#discover" data-en="Test your knowledge" data-ur="اپنا علم آزمائیں">Test your knowledge</a></div>
+  </div>
+  <div class="museum" aria-label="Abstract museum arch illustration"><div class="arch"></div><div class="museum-core"><div class="seal">C</div><strong>CHRONICLES</strong><span>EST. IN THE SPIRIT OF DISCOVERY</span></div><div class="floor"></div></div>
+</section>
+<section class="section" id="collections"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow" data-en="The archive" data-ur="آرکائیو">The archive</div><h2 data-en="Lives that shaped history" data-ur="وہ زندگیاں جنہوں نے تاریخ بنائی">Lives that shaped history</h2></div><p data-en="Explore the journeys, achievements, and legacies of influential figures across civilizations." data-ur="مختلف تہذیبوں کی بااثر شخصیات کے سفر، کامیابیوں اور ورثے کو دریافت کریں۔">Explore the journeys, achievements, and legacies of influential figures across civilizations.</p></div>
+  <div class="cards">
+    <article class="person" data-mark="Α"><div class="number">01 / ANCIENT WORLD</div><h3>Alexander the Great</h3><p data-en="The Macedonian king whose campaigns reshaped the ancient world and connected distant cultures." data-ur="مقدونیہ کا بادشاہ جس کی فتوحات نے قدیم دنیا کا نقشہ بدل دیا۔">The Macedonian king whose campaigns reshaped the ancient world and connected distant cultures.</p><button class="btn small detail" data-person="alexander" data-en="Discover story ↗" data-ur="کہانی پڑھیں ↗">Discover story ↗</button></article>
+    <article class="person" data-mark="اق"><div class="number">02 / POETRY & PHILOSOPHY</div><h3>Allama Muhammad Iqbal</h3><p data-en="The poet and philosopher whose ideas inspired generations and helped shape the vision of Pakistan." data-ur="شاعر اور مفکر جن کے خیالات نے نسلوں کو متاثر کیا اور پاکستان کے تصور کو جلا بخشی۔">The poet and philosopher whose ideas inspired generations and helped shape the vision of Pakistan.</p><button class="btn small detail" data-person="iqbal" data-en="Discover story ↗" data-ur="کہانی پڑھیں ↗">Discover story ↗</button></article>
+    <article class="person" data-mark="ج"><div class="number">03 / FOUNDING HISTORY</div><h3>Quaid-e-Azam Jinnah</h3><p data-en="The lawyer and statesman who led the political struggle for the creation of Pakistan." data-ur="وہ قانون دان اور رہنما جنہوں نے پاکستان کے قیام کی سیاسی جدوجہد کی قیادت کی۔">The lawyer and statesman who led the political struggle for the creation of Pakistan.</p><button class="btn small detail" data-person="jinnah" data-en="Discover story ↗" data-ur="کہانی پڑھیں ↗">Discover story ↗</button></article>
+  </div>
+</div></section>
+<section class="section"><div class="wrap quote"><blockquote>“The more you know of your history, the more liberated you are.”</blockquote><cite>— Maya Angelou</cite></div></section>
+<section class="section" id="timeline"><div class="wrap"><div class="eyebrow">A passage through time</div><h2>Moments in history</h2><div class="timeline">
+  <div class="event"><b>356 BCE</b><p>Alexander the Great is born in Pella, in the ancient kingdom of Macedon.</p></div>
+  <div class="event"><b>1893</b><p>Muhammad Iqbal completes his early education and continues his studies in Lahore.</p></div>
+  <div class="event"><b>1930</b><p>Iqbal delivers his presidential address at the Allahabad session of the Muslim League.</p></div>
+  <div class="event"><b>1947</b><p>Pakistan becomes an independent country on 14 August.</p></div>
+</div></div></section>
+<section class="section" id="discover"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Learn by exploring</div><h2>Discover & remember</h2></div><p>Build your historical knowledge, save stories to revisit, and challenge yourself with a quick question.</p></div>
+  <div class="learn">
+    <div class="box"><div class="eyebrow">Your reading list</div><h3>Saved stories</h3><p>Keep a personal list of the historical figures you want to explore again. Your list is saved in this browser.</p><div id="savedList" class="feedback">No stories saved yet.</div></div>
+    <div class="box"><div class="eyebrow">Knowledge quest · 01</div><h3>Test your knowledge</h3><div class="question" id="question">In which year did Pakistan become independent?</div><div class="answers" id="answers"><button data-answer="0">1940</button><button data-answer="1">1947</button><button data-answer="2">1956</button></div><div class="feedback" id="feedback" aria-live="polite"></div><button class="btn small" id="nextQuestion" type="button">Next question</button></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap foot"><span>© <span id="year"></span> CHRONICLES — The Digital Museum</span><span>Explore the Past. Discover the Truth. Shape the Future.</span></div></footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><button class="close" id="closeModal" aria-label="Close">×</button><div class="eyebrow">Featured biography</div><h2 id="modalTitle"></h2><p id="modalText"></p><button class="btn gold" id="saveStory">☆ Save to reading list</button></div></div>
+<script>
+(function(){
+  "use strict";
+  var people={
+    alexander:{name:"Alexander the Great",text:"Alexander III of Macedon (356–323 BCE) became king of Macedon in 336 BCE. He built one of the largest empires of the ancient world through campaigns across Asia and Egypt. His conquests helped spread Greek language and culture, while also creating new cultural connections across the regions he ruled."},
+    iqbal:{name:"Allama Muhammad Iqbal",text:"Muhammad Iqbal (1877–1938) was a poet, philosopher, and political thinker of British India. Writing in Urdu and Persian, he explored selfhood, spiritual renewal, and the condition of Muslim societies. His 1930 Allahabad Address is an important milestone in the political thought that preceded the creation of Pakistan."},
+    jinnah:{name:"Quaid-e-Azam Muhammad Ali Jinnah",text:"Muhammad Ali Jinnah (1876–1948) was a lawyer and political leader who headed the All-India Muslim League during the final phase of British rule in India. He led the political movement that resulted in the creation of Pakistan in 1947 and became its first Governor-General."}
+  };
+  var modal=document.getElementById("modal"),activePerson=null;
+  var saved=[];
+  try{saved=JSON.parse(localStorage.getItem("chroniclesSaved")||"[]");if(!Array.isArray(saved))saved=[];}catch(e){saved=[];}
+  function renderSaved(){
+    var box=document.getElementById("savedList");
+    if(!saved.length){box.textContent="No stories saved yet. Open a biography and choose “Save to reading list”.";return;}
+    box.textContent=saved.map(function(id){return people[id]?people[id].name:"";}).filter(Boolean).join(" · ");
+  }
+  function save(){
+    if(!activePerson)return;
+    if(saved.indexOf(activePerson)===-1)saved.push(activePerson);
+    try{localStorage.setItem("chroniclesSaved",JSON.stringify(saved));}catch(e){}
+    renderSaved();document.getElementById("saveStory").textContent="✓ Saved";
+  }
+  document.querySelectorAll(".detail").forEach(function(btn){btn.addEventListener("click",function(){
+    activePerson=btn.getAttribute("data-person");var person=people[activePerson];if(!person)return;
+    document.getElementById("modalTitle").textContent=person.name;document.getElementById("modalText").textContent=person.text;
+    document.getElementById("saveStory").textContent=saved.indexOf(activePerson)>-1?"✓ Saved":"☆ Save to reading list";modal.classList.add("open");
+  });});
+  function close(){modal.classList.remove("open");}
+  document.getElementById("closeModal").addEventListener("click",close);
+  modal.addEventListener("click",function(e){if(e.target===modal)close();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")close();});
+  document.getElementById("saveStory").addEventListener("click",save);renderSaved();
+  var questions=[
+    {q:"In which year did Pakistan become independent?",a:["1940","1947","1956"],correct:1,why:"Pakistan became independent on 14 August 1947."},
+    {q:"Which ancient kingdom did Alexander rule?",a:["Macedon","Rome","Persia"],correct:0,why:"Alexander became king of Macedon in 336 BCE."},
+    {q:"In which year was Allama Iqbal's Allahabad Address delivered?",a:["1920","1930","1940"],correct:1,why:"Iqbal delivered the address in 1930."}
+  ];
+  var qIndex=0,answered=false;
+  function showQuestion(){
+    answered=false;var q=questions[qIndex];document.getElementById("question").textContent=q.q;
+    var answers=document.getElementById("answers");answers.innerHTML="";
+    q.a.forEach(function(label,i){var b=document.createElement("button");b.type="button";b.textContent=label;b.addEventListener("click",function(){
+      if(answered)return;answered=true;
+      if(i===q.correct){b.classList.add("correct");document.getElementById("feedback").textContent="Correct! "+q.why;}
+      else{b.classList.add("wrong");answers.children[q.correct].classList.add("correct");document.getElementById("feedback").textContent="Not quite. "+q.why;}
+    });answers.appendChild(b);});
+    document.getElementById("feedback").textContent="";
+  }
+  document.getElementById("nextQuestion").addEventListener("click",function(){qIndex=(qIndex+1)%questions.length;showQuestion();});showQuestion();
+  var isUrdu=false;
+  document.getElementById("langBtn").addEventListener("click",function(){
+    isUrdu=!isUrdu;document.documentElement.lang=isUrdu?"ur":"en";document.body.classList.toggle("urdu",isUrdu);
+    document.querySelectorAll("[data-en][data-ur]").forEach(function(el){el.innerHTML=isUrdu?el.getAttribute("data-ur"):el.getAttribute("data-en");});
+    this.textContent=isUrdu?"English":"اردو";
+  });
+  document.getElementById("year").textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
